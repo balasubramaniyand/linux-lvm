@@ -1,0 +1,8 @@
+To add 50 GB to the /opt directory using Logical Volume Manager (LVM) without 
+lsblk
+pvcreate /dev/sdb
+vgextend vg01 /dev/sdb
+lvextend -L +50G /dev/vg01/lv_opt
+xfs_growfs /opt
+resize2fs /dev/vg01/lv_opt
+df -h /opt
